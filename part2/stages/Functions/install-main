@@ -224,7 +224,7 @@ install_dom0()
     #
     cryptsetup -q --cipher=aes-xts-plain64 --hash sha512 \
                --pbkdf pbkdf2 --pbkdf-force-iterations $(( 1000 * 1000 )) \
-               --type luks2 luksFormat ${config_lv} ${RECOVERY_KEY} >&2 || {
+               --type luks2 --offset 4192 luksFormat ${config_lv} ${RECOVERY_KEY} >&2 || {
         rm -f ${RECOVERY_KEY}
         set +x
         return 1
@@ -232,7 +232,7 @@ install_dom0()
     local PLATFORM_KEY=$(gen_platform_key ${DOM0_MOUNT})
     set_platform_key ${RECOVERY_KEY} ${PLATFORM_KEY} ${config_lv}
     # Open config lv.
-    cryptsetup -q -d ${RECOVERY_KEY} --offset 4192 luksOpen /dev/xenclient/config config >&2 || {
+    cryptsetup -q -d ${RECOVERY_KEY} luksOpen /dev/xenclient/config config >&2 || {
         set +x
         return 1
     }
