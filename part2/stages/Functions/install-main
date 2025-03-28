@@ -232,7 +232,7 @@ install_dom0()
     local PLATFORM_KEY=$(gen_platform_key ${DOM0_MOUNT})
     set_platform_key ${RECOVERY_KEY} ${PLATFORM_KEY} ${config_lv}
     # Open config lv.
-    cryptsetup -q -d ${RECOVERY_KEY} luksOpen /dev/xenclient/config config >&2 || {
+    cryptsetup -q -d ${RECOVERY_KEY} --offset 4192 luksOpen /dev/xenclient/config config >&2 || {
         set +x
         return 1
     }
