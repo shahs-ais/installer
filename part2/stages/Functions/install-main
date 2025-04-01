@@ -46,7 +46,7 @@ mk_xc_lvm()
     do_cmd pvcreate -ff -y "${PARTITION_DEV}" || return 1
     do_cmd vgcreate xenclient "${PARTITION_DEV}" || return 1
     do_cmd create_lv xenclient boot --size 12M || return 1
-    do_cmd create_lv xenclient config --size 16M || return 1
+    do_cmd create_lv xenclient config --size 26M || return 1
     do_cmd create_lv xenclient root --size ${DOM0_ROOT_LV_SIZE} || return 1
     do_cmd create_lv xenclient root.new --size ${DOM0_ROOT_LV_SIZE} || return 1
     do_cmd create_lv xenclient swap --size 256M || return 1
@@ -224,7 +224,7 @@ install_dom0()
     #
     cryptsetup -q --cipher=aes-xts-plain64 --hash sha512 \
                --pbkdf pbkdf2 --pbkdf-force-iterations $(( 1000 * 1000 )) \
-               --type luks2 --offset 4192 luksFormat ${config_lv} ${RECOVERY_KEY} >&2 || {
+               --type luks2 luksFormat ${config_lv} ${RECOVERY_KEY} >&2 || {
         rm -f ${RECOVERY_KEY}
         set +x
         return 1
