@@ -46,7 +46,7 @@ mk_xc_lvm()
     do_cmd pvcreate -ff -y "${PARTITION_DEV}" || return 1
     do_cmd vgcreate xenclient "${PARTITION_DEV}" || return 1
     do_cmd create_lv xenclient boot --size 12M || return 1
-    do_cmd create_lv xenclient config --size 26M || return 1
+    do_cmd create_lv xenclient config --size 12M || return 1
     do_cmd create_lv xenclient root --size ${DOM0_ROOT_LV_SIZE} || return 1
     do_cmd create_lv xenclient root.new --size ${DOM0_ROOT_LV_SIZE} || return 1
     do_cmd create_lv xenclient swap --size 256M || return 1
@@ -222,9 +222,7 @@ install_dom0()
     #
     # config
     #
-    cryptsetup -q --cipher=aes-xts-plain64 --hash sha512 \
-               --pbkdf pbkdf2 --pbkdf-force-iterations $(( 1000 * 1000 )) \
-               --type luks2 luksFormat ${config_lv} ${RECOVERY_KEY} >&2 || {
+    cryptsetup -q -i 600 --cipher=aes-xts-plain64 luksFormat ${config_lv} ${RECOVERY_KEY} >&2 || {
         rm -f ${RECOVERY_KEY}
         set +x
         return 1
@@ -256,13 +254,12 @@ install_dom0()
     # prepare lvm directory to store lvm metadata backups.
     do_cmd mkdir -p -m 755 ${DOM0_MOUNT}/config/etc/lvm     >&2 || return 1
 
-    local CIPHER="--cipher=aes-xts-plain64 --key-size=512"
     #
     # log
     #
     set -x
     local LOG_KEY=$(gen_log_key ${DOM0_MOUNT})
-    cryptsetup -q -d ${LOG_KEY} ${CIPHER} create log /dev/xenclient/log >&2 || {
+    cryptsetup -q -d ${LOG_KEY} create log /dev/xenclient/log >&2 || {
         set +x
         return 1
     }
@@ -271,11 +268,10 @@ install_dom0()
     # cores
     #
     local CORES_KEY=$(gen_cores_key ${DOM0_MOUNT})
-    cryptsetup -q -d ${CORES_KEY} ${CIPHER} create cores /dev/xenclient/cores >&2 || {
+    cryptsetup -q -d ${CORES_KEY} create cores /dev/xenclient/cores >&2 || {
         set +x
         return 1
     }
-    unset CIPHER
 
     # device key (used to tie encrypted disks to this host)
     local DEVICE_KEY=$(gen_device_key ${DOM0_MOUNT})
