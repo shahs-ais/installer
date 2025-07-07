@@ -23,7 +23,7 @@
 # ^^^ defines ${TARGET_DISK}
 
 # Ensure /proc is mounted
-if !mountpoint -q /proc; then
+if ! mountpoint -q /proc; then
     echo "Mounting /proc"
     mount -t proc proc /proc || return 1
 fi
