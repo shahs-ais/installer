@@ -636,6 +636,7 @@ copy_to_esp()
     do_cmd mkdir -p ${ESP_MOUNT}/EFI/OpenXT >&2
     do_cmd cp -f ${DOM0_MOUNT}/boot/xen.efi \
           ${DOM0_MOUNT}/boot/xen.gz \
+          ${DOM0_MOUNT}/boot/xen-test.gz \
           ${DOM0_MOUNT}/boot/vmlinuz-6.15.0-rc2-v14-tb \
           ${DOM0_MOUNT}/boot/vmlinuz-6.15.3-v11-tb \
           ${DOM0_MOUNT}/boot/shimx64.efi \
