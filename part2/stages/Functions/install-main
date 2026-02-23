@@ -635,15 +635,10 @@ copy_to_esp()
     do_cmd mkdir -p ${ESP_MOUNT}/EFI/BOOT >&2
     do_cmd mkdir -p ${ESP_MOUNT}/EFI/OpenXT >&2
     do_cmd cp -f ${DOM0_MOUNT}/boot/xen.efi \
-          ${DOM0_MOUNT}/boot/xen.gz \
-          ${DOM0_MOUNT}/boot/xen-test.gz \
+          ${DOM0_MOUNT}/boot/xen-debug.gz \
           ${DOM0_MOUNT}/boot/initramfs.cpio.gz \
           ${DOM0_MOUNT}/boot/bzImage-sl-new \
           ${DOM0_MOUNT}/boot/initrd-sl-new \
-          ${DOM0_MOUNT}/boot/bzImage-test \
-          ${DOM0_MOUNT}/boot/vmlinuz-6.15.0-rc2-v14-tb \
-          ${DOM0_MOUNT}/boot/vmlinuz-6.15.3-v11-tb \
-          ${DOM0_MOUNT}/boot/vmlinuz-6.18.0-rc3-v15-tb \
           ${DOM0_MOUNT}/boot/shimx64.efi \
           ${DOM0_MOUNT}/boot/grub-efi-bootx64.efi \
           ${DOM0_MOUNT}/boot/EFI/BOOT/grub-efi-bootx64.efi \
