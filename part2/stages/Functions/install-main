@@ -638,6 +638,7 @@ copy_to_esp()
           ${DOM0_MOUNT}/boot/xen-debug.gz \
           ${DOM0_MOUNT}/boot/xen-sl.gz \
           ${DOM0_MOUNT}/boot/xen-sl.efi \
+          ${DOM0_MOUNT}/boot/xen-sl.cfg \
           ${DOM0_MOUNT}/boot/initramfs.cpio.gz \
           ${DOM0_MOUNT}/boot/bzImage-sl-new \
           ${DOM0_MOUNT}/boot/initrd-sl-new \
