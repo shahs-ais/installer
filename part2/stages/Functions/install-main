@@ -636,6 +636,8 @@ copy_to_esp()
     do_cmd mkdir -p ${ESP_MOUNT}/EFI/OpenXT >&2
     do_cmd cp -f ${DOM0_MOUNT}/boot/xen.efi \
           ${DOM0_MOUNT}/boot/xen-debug.gz \
+          ${DOM0_MOUNT}/boot/xen-sl.gz \
+          ${DOM0_MOUNT}/boot/xen-sl.efi \
           ${DOM0_MOUNT}/boot/initramfs.cpio.gz \
           ${DOM0_MOUNT}/boot/bzImage-sl-new \
           ${DOM0_MOUNT}/boot/initrd-sl-new \
