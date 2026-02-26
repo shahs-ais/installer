@@ -639,7 +639,6 @@ copy_to_esp()
           ${DOM0_MOUNT}/boot/xen-sl.gz \
           ${DOM0_MOUNT}/boot/xen-sl.efi \
           ${DOM0_MOUNT}/boot/xen-sl.cfg \
-          ${DOM0_MOUNT}/boot/initramfs.cpio.gz \
           ${DOM0_MOUNT}/boot/bzImage-sl-new \
           ${DOM0_MOUNT}/boot/initrd-sl-new \
           ${DOM0_MOUNT}/boot/shimx64.efi \
@@ -648,7 +647,6 @@ copy_to_esp()
           ${DOM0_MOUNT}/boot/bzImage \
           ${DOM0_MOUNT}/boot/initrd \
           ${DOM0_MOUNT}/boot/*.bin \
-          ${DOM0_MOUNT}/boot/*.BIN \
           ${DOM0_MOUNT}/etc/xen/xenrefpolicy/policy/policy.24 \
           ${DOM0_MOUNT}/usr/share/xenclient/bootloader/openxt.cfg \
           ${DOM0_MOUNT}/usr/share/xenclient/bootloader/BOOT.CSV \
