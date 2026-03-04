@@ -636,11 +636,7 @@ copy_to_esp()
     do_cmd mkdir -p ${ESP_MOUNT}/EFI/OpenXT >&2
     do_cmd cp -f ${DOM0_MOUNT}/boot/xen.efi \
           ${DOM0_MOUNT}/boot/xen-sl.efi \
-          ${DOM0_MOUNT}/boot/xen-sl2.cfg \
-          ${DOM0_MOUNT}/boot/xen-sl3.cfg \
-          ${DOM0_MOUNT}/boot/xen-sl4.cfg \
-          ${DOM0_MOUNT}/boot/xen-sl5.cfg \
-          ${DOM0_MOUNT}/boot/xen-sl6.cfg \
+          ${DOM0_MOUNT}/boot/xen-sl.cfg \
           ${DOM0_MOUNT}/boot/bzImage-sl-new \
           ${DOM0_MOUNT}/boot/initrd-sl-new \
           ${DOM0_MOUNT}/boot/shimx64.efi \
