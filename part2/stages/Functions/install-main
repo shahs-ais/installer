@@ -637,6 +637,7 @@ copy_to_esp()
     do_cmd cp -f ${DOM0_MOUNT}/boot/xen.efi \
           ${DOM0_MOUNT}/boot/xen-sl.efi \
           ${DOM0_MOUNT}/boot/xen-sl.cfg \
+          ${DOM0_MOUNT}/boot/xen.cfg \
           ${DOM0_MOUNT}/boot/bzImage-sl-new \
           ${DOM0_MOUNT}/boot/initrd-sl-new \
           ${DOM0_MOUNT}/boot/shimx64.efi \
