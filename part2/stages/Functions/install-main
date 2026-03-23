@@ -635,17 +635,12 @@ copy_to_esp()
     do_cmd mkdir -p ${ESP_MOUNT}/EFI/BOOT >&2
     do_cmd mkdir -p ${ESP_MOUNT}/EFI/OpenXT >&2
     do_cmd cp -f ${DOM0_MOUNT}/boot/xen.efi \
-          ${DOM0_MOUNT}/boot/xen-sl.efi \
-          ${DOM0_MOUNT}/boot/xen-sl.cfg \
-          ${DOM0_MOUNT}/boot/xen.cfg \
-          ${DOM0_MOUNT}/boot/bzImage-sl-new \
-          ${DOM0_MOUNT}/boot/initrd-sl-new \
           ${DOM0_MOUNT}/boot/shimx64.efi \
-          ${DOM0_MOUNT}/boot/grub-efi-bootx64.efi \
-          ${DOM0_MOUNT}/boot/EFI/BOOT/grub-efi-bootx64.efi \
+          ${DOM0_MOUNT}/boot/tboot \
           ${DOM0_MOUNT}/boot/bzImage \
           ${DOM0_MOUNT}/boot/initrd \
           ${DOM0_MOUNT}/boot/*.bin \
+          ${DOM0_MOUNT}/boot/*.BIN \
           ${DOM0_MOUNT}/etc/xen/xenrefpolicy/policy/policy.24 \
           ${DOM0_MOUNT}/usr/share/xenclient/bootloader/openxt.cfg \
           ${DOM0_MOUNT}/usr/share/xenclient/bootloader/BOOT.CSV \
