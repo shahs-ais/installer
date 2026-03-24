@@ -641,6 +641,8 @@ copy_to_esp()
           ${DOM0_MOUNT}/boot/initrd \
           ${DOM0_MOUNT}/boot/*.bin \
           ${DOM0_MOUNT}/boot/*.BIN \
+          ${DOM0_MOUNT}/boot/grub-efi-bootx64.efi \
+          ${DOM0_MOUNT}/boot/EFI/BOOT/grub-efi-bootx64.efi \
           ${DOM0_MOUNT}/etc/xen/xenrefpolicy/policy/policy.24 \
           ${DOM0_MOUNT}/usr/share/xenclient/bootloader/openxt.cfg \
           ${DOM0_MOUNT}/usr/share/xenclient/bootloader/BOOT.CSV \
