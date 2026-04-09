@@ -28,6 +28,9 @@ dialog --extra-button --extra-label "Previous" --ok-label "Continue" --cancel-la
 
       Proceed with installation?" 8 44
 
+# Temporary to fix proc mount intermittent issue - ensure it is mounted before installation
+mount -t proc proc /proc
+
 OPT=$?
 [ "$OPT" != "0" ] || exit ${Continue}
 [ "$OPT" != "3" ] || exit ${Previous}

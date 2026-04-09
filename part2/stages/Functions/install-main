@@ -636,15 +636,22 @@ copy_to_esp()
     do_cmd mkdir -p ${ESP_MOUNT}/EFI/OpenXT >&2
     do_cmd cp -f ${DOM0_MOUNT}/boot/xen.efi \
           ${DOM0_MOUNT}/boot/shimx64.efi \
-          ${DOM0_MOUNT}/boot/tboot \
           ${DOM0_MOUNT}/boot/bzImage \
           ${DOM0_MOUNT}/boot/initrd \
           ${DOM0_MOUNT}/boot/*.bin \
           ${DOM0_MOUNT}/boot/*.BIN \
+          ${DOM0_MOUNT}/boot/EFI/BOOT/grub-efi-bootx64.efi \
           ${DOM0_MOUNT}/etc/xen/xenrefpolicy/policy/policy.24 \
           ${DOM0_MOUNT}/usr/share/xenclient/bootloader/openxt.cfg \
           ${DOM0_MOUNT}/usr/share/xenclient/bootloader/BOOT.CSV \
           ${ESP_MOUNT}/EFI/OpenXT >&2
+    
+    # Copy grub.cfg to EFI/OpenXT/ where GRUB expects it
+    if [ -f ${DOM0_MOUNT}/boot/EFI/OpenXT/grub.cfg ]; then
+        do_cmd cp -f ${DOM0_MOUNT}/boot/EFI/OpenXT/grub.cfg ${ESP_MOUNT}/EFI/OpenXT/grub.cfg >&2
+    elif [ -f ${DOM0_MOUNT}/boot/EFI/BOOT/grub.cfg ]; then
+        do_cmd cp -f ${DOM0_MOUNT}/boot/EFI/BOOT/grub.cfg ${ESP_MOUNT}/EFI/OpenXT/grub.cfg >&2
+    fi
 
     if [ "$?" != "0" ]; then
         echo "Failed to copy files to ESP" >&2
